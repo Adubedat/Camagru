@@ -1,0 +1,36 @@
+#header-container, #left-bloc {
+  display: flex;
+}
+
+body {
+  margin: 0;
+}
+
+#header-container {
+  height: 80px;
+  background-color: black;
+  color: white;
+  justify-content: space-between;
+  font-family: 'Arial';
+  font-size: 20px;
+}
+
+#accueil {
+  font-family: 'Arizonia', cursive;
+  font-size: 60px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.header-div {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 100%;
+}
+
+.header-div:hover {
+  background-color: #424242;
+  cursor: pointer;
+}
