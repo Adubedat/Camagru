@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="header/header.css">
@@ -11,8 +14,7 @@
 
           <div class="header-div" id="signup"><p>Sign up</p></div>
           <?php
-            session_start();
-            if (isset($_SESSION[logged_in_user]) && $_SESSION[logged_in_user] == "yes") {
+            if (isset($_SESSION[logged_on_user]) && $_SESSION[logged_on_user] == "yes") {
           ?>
           <div class="header-div" id="logout"><p>Log out</p></div>
           <?php

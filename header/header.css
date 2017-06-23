@@ -8,7 +8,7 @@ body {
 
 #header-container {
   height: 80px;
-  background-color: black;
+  background-color: #286DA8;
   color: white;
   justify-content: space-between;
   font-family: 'Arial';
@@ -31,6 +31,6 @@ body {
 }
 
 .header-div:hover {
-  background-color: #424242;
+  background-color: #3082C8;
   cursor: pointer;
 }
