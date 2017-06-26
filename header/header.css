@@ -1,36 +1,38 @@
-#header-container, #left-bloc {
-  display: flex;
-}
-
 body {
   margin: 0;
 }
 
-#header-container {
-  height: 80px;
-  background-color: #286DA8;
-  color: white;
-  justify-content: space-between;
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #286DA8;
+}
+
+li {
+  float: right;
+}
+
+li:first-child {
+  float: left;
+}
+
+li a {
+  display: block;
+  padding: 23px 16px;
   font-family: 'Arial';
-  font-size: 20px;
+  color: white;
+  text-decoration: none;
 }
 
-#accueil {
+li:first-child a{
   font-family: 'Arizonia', cursive;
-  font-size: 60px;
-  padding-left: 30px;
-  padding-right: 30px;
+  font-size: 50px;
+  padding: 0px 30px;
 }
 
-.header-div {
-  display: flex;
-  align-items: center;
-  padding-left: 10px;
-  padding-right: 10px;
-  height: 100%;
-}
-
-.header-div:hover {
+li a:hover {
   background-color: #3082C8;
   cursor: pointer;
 }

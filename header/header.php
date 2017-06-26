@@ -7,22 +7,20 @@
     <link href="https://fonts.googleapis.com/css?family=Arizonia" rel="stylesheet">
   </head>
   <body>
-    <div id="header-container">
-        <div class="header-div" id="accueil">Camagru</div>
-        <div id="left-bloc">
-          <div class="header-div" id="Gallery"><p>Gallery</p></div>
+    <ul id="navbar">
+        <li><a href="#montage">Camagru</a></li>
+        <li><a href="#gallery">Gallery</a></li>
 
-          <div class="header-div" id="signup"><p>Sign up</p></div>
-          <?php
+        <li><a href="#">Sign up</a></li>
+        <?php
             if (isset($_SESSION[logged_on_user]) && $_SESSION[logged_on_user] == "yes") {
-          ?>
-          <div class="header-div" id="logout"><p>Log out</p></div>
-          <?php
+        ?>
+        <li><a href="#">Log out<a/></li>
+        <?php
             } else {
-          ?>
-          <div class="header-div" id="signin"><p>Login</p></div>
-          <?php }; ?>
-        </div>
-    </div>
+        ?>
+        <li><a href="#">Login</a></li>
+        <?php }; ?>
+    </ul>
   </body>
 </html>
