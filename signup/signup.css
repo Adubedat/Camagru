@@ -13,8 +13,6 @@
 }
 
 #signup-form {
-  position: relative;
-  z-index: 100000;
   border-radius : 3px;
   box-shadow: 0 0 15px 1px rgba(0,0,0,.4);
   width: 90%;
