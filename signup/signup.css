@@ -42,6 +42,12 @@ form input {
   border-radius : 3px;
 }
 
+form input:disabled {
+  background-color: #cecece !important;
+  box-shadow: none;
+  cursor: default;
+}
+
 form .button {
   width: 35%;
   color: white;
@@ -80,6 +86,16 @@ button:hover {
     font-size: 60px;
     font-weight: bold;
     cursor: pointer
+}
+
+.valid {
+  border-color: #438496;
+  box-shadow: 0 0 5px 0 #438496;
+}
+
+.error {
+  border-color: #CD5360;
+  box-shadow: 0 0 5px 0 #CD5360;
 }
 
 @keyframes fadein {

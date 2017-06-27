@@ -15,6 +15,8 @@ try {
         login VARCHAR(16),
         password TEXT,
         email TEXT,
+        activation_id TEXT,
+        reset_id TEXT,
         is_activated BOOLEAN
       );';
 
