@@ -38,7 +38,7 @@ function registration() {
     xhttp.send(post_data);
 }
 function signup_callback(response) {
-  console.log(response.response);
+  console.log(response);
 
 }
 
