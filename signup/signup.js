@@ -11,6 +11,11 @@ window.onload = function(){
         modal.style.display = "none";
     }
   }
+
+  document.getElementById("email").addEventListener("keypress", check_mail);
+  document.getElementById("login").addEventListener("keypress", check_login);
+  document.getElementById("password").addEventListener("keypress", check_password);
+  document.getElementById("password-confirmation").addEventListener("keypress", check_password);
 };
 
 function addEventListenerList(list, event, fn) {
@@ -21,4 +26,8 @@ function addEventListenerList(list, event, fn) {
 
 function close_form() {
   document.getElementById("signup").style.display = "none";
+}
+
+function check_mail() {
+  /\S+@\S+\.\S+/
 }
