@@ -2,6 +2,7 @@
   <span class="close close-cross" title="Close Modal">&times;</span>
   <form id="signup-form">
     <p>Registration</p>
+    <img id="loading-gif" src="../img/loading.gif" />
     <input id ="email" type="email" placeholder="Email address*" name="email">
     <input id="login" type="text" placeholder="Login*" name="login">
     <input id="password" type="password" placeholder="Password*" name="password">

@@ -24,6 +24,9 @@
     echo "<p class='error_msg'>Your login already exists.</p>";
     die;
   }
+  else {
+    print(create_user($_POST['email'], $_POST['login'], $_POST['password']));
+  }
 
   function email_exists($email) {
 
@@ -75,4 +78,37 @@
         echo 'ERROR PDO :' . $e->getMessage();
       }
       return false;
+  }
+
+  function create_user($email, $login, $password) {
+
+    include '../config/database.php';
+    $activation_id = bin2hex(openssl_random_pseudo_bytes(32));
+    $password = hash('whirlpool', $password);
+    try {
+        $db = new pdo($DB_DSN, $DB_USER, $DB_PASSWORD, array(
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        ));
+
+        $sql = "INSERT INTO `camagru`.`users` (`login`, `password`, `email`, `activation_id`)
+                VALUES (:login, :password, :email, :activation_id);";
+        $query = $db->prepare($sql);
+        $query->bindParam(':login', $login, PDO::PARAM_STR);
+        $query->bindParam(':email', $email, PDO::PARAM_STR);
+        $query->bindParam(':password', $password, PDO::PARAM_STR);
+        $query->bindParam(':activation_id', $activation_id, PDO::PARAM_STR);
+        $query->execute();
+      }catch(PDOException $e){
+        echo 'ERROR PDO :' . $e->getMessage();
+      }
+      return (send_email_confirmation($email, $login, $activation_id));
+  }
+
+  function send_email_confirmation($email, $login, $activation_id) {
+    $message = "Welcome to Camagru $login.\r\n\r\n";
+    $message .= "In order to activate your account, please click on the link below :\r\n";
+    $message .= "http://localhost:8080/signup/activation.php?id=$activation_id";
+
+  //  mail($email, "Camagru account activation", $message);
+    return "<p class='success_msg'>An activation email has been sent to your email address.</p>";
   }
