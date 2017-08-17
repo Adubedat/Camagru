@@ -7,7 +7,7 @@
     <?php
         } else {
     ?>
-    <li><a id="login-button" href="#">Login</a></li>
+    <li><a id="login-button" href="#">Log in</a></li>
     <?php }; ?>
     <li><a id="signup-button" href="#">Sign up</a></li>
     <li><a href="#gallery">Gallery</a></li>

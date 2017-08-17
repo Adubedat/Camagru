@@ -1,0 +1,15 @@
+#forgotten-password-container {
+  text-align:center;
+}
+
+#forgotten-password {
+  display: inline-block;
+  color: #969696;
+  font-size:14px !important;
+  margin:10px;
+}
+
+#forgotten-password:hover {
+  color: #646464 !important;
+  cursor: pointer;
+}

@@ -1,4 +1,4 @@
-window.onload = function(){
+window.addEventListener("load", function(){
   document.getElementById("signup-button").onclick = function() {
     document.getElementById("signup").style.display = 'flex';
   };
@@ -6,10 +6,15 @@ window.onload = function(){
   addEventListenerList(close_list, 'click', close_form);
 
   var modal = document.getElementById('signup');
+  var modal2 = document.getElementById('login-window');
   window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
         delete_temporary_messages();
+    }
+    else if (event.target == modal2) {
+      modal2.style.display= "none";
+      delete_temporary_messages();
     }
   }
 
@@ -32,8 +37,10 @@ window.onload = function(){
 
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          signup_callback(this);
+        if (this.readyState == 4) {
+          if (this.status == 200) {
+            signup_callback(this);
+          }
         }
       };
       xhttp.open("POST", "signup/registration.php", true);
@@ -55,6 +62,7 @@ window.onload = function(){
 
   function close_form() {
     document.getElementById("signup").style.display = "none";
+    document.getElementById("login-window").style.display = "none";
     document.getElementById("signup-form").reset();
     var elements = document.querySelectorAll("form input");
 
@@ -132,14 +140,15 @@ window.onload = function(){
     }
   }
 
-  function delete_temporary_messages() {
-    var elements = document.getElementsByClassName("error_msg");
-    while(elements.length > 0){
-        elements[0].parentNode.removeChild(elements[0]);
-    }
-    elements = document.getElementsByClassName("success_msg");
-    while(elements.length > 0){
-        elements[0].parentNode.removeChild(elements[0]);
-    }
+});
+
+function delete_temporary_messages() {
+  var elements = document.getElementsByClassName("error_msg");
+  while(elements.length > 0){
+      elements[0].parentNode.removeChild(elements[0]);
   }
-};
+  elements = document.getElementsByClassName("success_msg");
+  while(elements.length > 0){
+      elements[0].parentNode.removeChild(elements[0]);
+  }
+}

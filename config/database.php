@@ -1,5 +1,5 @@
 <?php
 
-$DB_DSN = "mysql:host=127.0.0.1";
-$DB_USER = "root";
-$DB_PASSWORD = "root";
+$DB_DSN = 'mysql:host=' . getenv('IP') . ';port=3306;';
+$DB_USER = getenv('C9_USER');
+$DB_PASSWORD = "";

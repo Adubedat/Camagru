@@ -107,8 +107,8 @@
   function send_email_confirmation($email, $login, $activation_id) {
     $message = "Welcome to Camagru $login.\r\n\r\n";
     $message .= "In order to activate your account, please click on the link below :\r\n";
-    $message .= "http://localhost:8080/signup/activation.php?id=$activation_id";
+    $message .= "http://" . $_SERVER['HTTP_HOST'] . "/signup/activation.php?id=$activation_id";
 
-  //  mail($email, "Camagru account activation", $message);
+    mail($email, "Camagru account activation", $message);
     return "<p class='success_msg'>An activation email has been sent to your email address.</p>";
   }
