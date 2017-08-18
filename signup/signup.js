@@ -7,6 +7,7 @@ window.addEventListener("load", function(){
 
   var modal = document.getElementById('signup');
   var modal2 = document.getElementById('login-window');
+  var modal3 = document.getElementById('forgotten-password-window');
   window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
@@ -14,6 +15,10 @@ window.addEventListener("load", function(){
     }
     else if (event.target == modal2) {
       modal2.style.display= "none";
+      delete_temporary_messages();
+    }
+    else if (event.target == modal3) {
+      modal3.style.display= "none";
       delete_temporary_messages();
     }
   }
@@ -63,7 +68,10 @@ window.addEventListener("load", function(){
   function close_form() {
     document.getElementById("signup").style.display = "none";
     document.getElementById("login-window").style.display = "none";
+    document.getElementById("forgotten-password-window").style.display = "none";
     document.getElementById("signup-form").reset();
+    document.getElementById("login-form").reset();
+    document.getElementById("forgotten-password-form").reset();
     var elements = document.querySelectorAll("form input");
 
     for (var i = 0; i < 4; i++) {

@@ -1,4 +1,4 @@
-<div id="login-window">
+<div class='form-container' id="login-window">
   <span class="close close-cross" title="Close Modal">&times;</span>
   <form id="login-form">
     <p>Log in</p>

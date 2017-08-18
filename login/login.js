@@ -1,9 +1,38 @@
 window.addEventListener("load", function(){
-  document.getElementById("login-button").onclick = function() {
-    document.getElementById("login-window").style.display = 'flex';
-  };
 
-  document.getElementById("login-validation").addEventListener("click", login);
+  if (document.getElementById("login-button") != null) {
+    document.getElementById("login-button").onclick = function() {
+      document.getElementById("login-window").style.display = 'flex';
+    };
+
+    document.getElementById("forgotten-password").onclick = function() {
+      document.getElementById("login-window").style.display = 'none';
+      document.getElementById("forgotten-password-window").style.display = 'flex';
+    }
+
+    document.getElementById("login-validation").addEventListener("click", login);
+  }
+
+  else if (document.getElementById("logout-button") != null) {
+    document.getElementById("logout-button").onclick = function() {
+      logout();
+    };
+  }
+
+  function logout() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        logout_callback();
+      }
+    };
+    xhttp.open("POST", "login/logout.php", true);
+    xhttp.send();
+  }
+
+  function logout_callback() {
+    location.reload();
+  }
 
   function login() {
     delete_temporary_messages();
@@ -37,3 +66,11 @@ window.addEventListener("load", function(){
     }
   }
 });
+
+function account_activated() {
+  if (document.getElementById("login-button") != null) {
+    document.getElementById("login-window").style.display = 'flex';
+    var div = document.getElementById("loading-gif2");
+    div.insertAdjacentHTML('beforebegin', "<p class='success_msg'>Your account has been activated.</p>");
+  }
+}

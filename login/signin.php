@@ -2,7 +2,6 @@
 session_start();
 
 if (!login_exists($_POST['login'])) {
-  print_r($_POST);
   echo "<p class='error_msg'>Wrong login.</p>";
   die;
 }

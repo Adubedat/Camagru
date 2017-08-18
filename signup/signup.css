@@ -1,4 +1,4 @@
-#signup, #login-window {
+.form-container {
   top:0px;
   left:0px;
   opacity: 0.8;
@@ -12,7 +12,7 @@
   z-index:1;
 }
 
-#signup-form, #login-form {
+form {
   border-radius : 3px;
   box-shadow: 0 0 15px 1px rgba(0,0,0,.4);
   width: 90%;
@@ -28,13 +28,13 @@
   animation: fadein 1s;
 }
 
-#signup p, #login-window p {
+form p {
   font-family: Arial;
   font-size: 25px;
   text-align: center;
 }
 
-#loading-gif, #loading-gif2 {
+#loading-gif, #loading-gif2, #loading-gif3 {
   display: none;
   height: 40px;
   margin:auto;

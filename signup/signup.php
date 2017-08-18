@@ -1,4 +1,4 @@
-<div id="signup">
+<div class='form-container' id="signup">
   <span class="close close-cross" title="Close Modal">&times;</span>
   <form id="signup-form">
     <p>Registration</p>

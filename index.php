@@ -19,8 +19,18 @@ include('config/setup.php');
 
       include('header/header.php');
       include('signup/signup.php');
-      include('login/login.php');
-
+      if (!isset($_SESSION['logged_on_user']) || $_SESSION['logged_on_user'] != "yes") {
+        include('login/login.php');
+        include('login/forgotten-password.html');
+        if (isset($_SESSION['activation']) && $_SESSION['activation'] == "yes") {
+          unset($_SESSION['activation']);
+          ?>
+            <script type="text/javascript">
+              account_activated();
+            </script>
+          <?php
+        }
+      }
     ?>
   </body>
 </html>
