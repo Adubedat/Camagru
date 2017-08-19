@@ -74,3 +74,11 @@ function account_activated() {
     div.insertAdjacentHTML('beforebegin', "<p class='success_msg'>Your account has been activated.</p>");
   }
 }
+
+function password_changed() {
+  if (document.getElementById("login-button") != null) {
+    document.getElementById("login-window").style.display = 'flex';
+    var div = document.getElementById("loading-gif2");
+    div.insertAdjacentHTML('beforebegin', "<p class='success_msg'>Your password has been changed.</p>");
+  }
+}
