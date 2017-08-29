@@ -14,8 +14,17 @@
   display: none;
   padding: 20px;
   margin: 0 auto;
+  width: 640px;
+  height: 480px;
 }
 
+#uploaded_img {
+  display: block;
+  padding: 20px;
+  margin: 0 auto;
+  width: 640px;
+  height: 480px;
+}
 #enable-camera {
   display: none;
 }
@@ -50,6 +59,7 @@
   height:480px;
   display: none;
   margin: 0 auto;
+  margin-bottom: 10px;
   border: 1px dotted grey !important;
 }
 .subtitle {

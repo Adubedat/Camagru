@@ -13,6 +13,9 @@ window.addEventListener("load", function(){
 
   start_camera();
   function start_camera() {
+    if (document.getElementById('uploaded_img') != null) {
+      document.getElementById('uploaded_img').remove();
+    }
     navigator.getMedia(
       {
         video: true,
@@ -43,9 +46,14 @@ window.addEventListener("load", function(){
   }
 
   function takepicture() {
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    canvas.getContext('2d').drawImage(video, 0, 0);
+    canvas.width = 640;
+    canvas.height = 480;
+    if (document.getElementById('uploaded_img') != null) {
+      canvas.getContext('2d').drawImage(document.getElementById('uploaded_img'), 0, 0);
+    }
+    else {
+      canvas.getContext('2d').drawImage(video, 0, 0);
+    }
     var data = canvas.toDataURL('image/png');
     photo.setAttribute('src', data);
     photo.style.width = '320px';
@@ -68,5 +76,44 @@ window.addEventListener("load", function(){
     document.getElementById('upload-img').style.display = 'block';
     video.style.display = 'none';
     document.getElementById('disable-camera').style.display = 'none';
+  }
+
+  document.getElementById('upload-img').onclick = function() {
+    document.getElementById('upload-input').click();
+  }
+
+  document.getElementById('upload-input').addEventListener('change', upload_image);
+
+  function upload_image() {
+    var allowedTypes = ['png', 'jpg', 'jpeg', 'gif'];
+    var fileInput = document.getElementById('upload-input');
+    var files = this.files;
+    var imgType;
+
+    imgType = files[0].name.split('.');
+    imgType = imgType[imgType.length - 1];
+    if (allowedTypes.indexOf(imgType) != -1) {
+      display_uploaded_image(files[0]);
+    }
+    else {
+      alert('Wrong file type.');
+    }
+  }
+
+  function display_uploaded_image(file) {
+    var reader = new FileReader();
+    var node = document.getElementById('montage');
+
+    reader.addEventListener('load', function() {
+
+      var img_element = document.createElement('img');
+      img_element.setAttribute('id', 'uploaded_img');
+      img_element.src = this.result;
+      node.insertBefore(img_element, node.firstChild);
+      document.getElementById('upload-img').style.display = 'none';
+
+    });
+
+    reader.readAsDataURL(file);
   }
 });

@@ -65,14 +65,23 @@ window.addEventListener("load", function(){
   }
 
   function close_form() {
-    document.getElementById("signup").style.display = "none";
-    document.getElementById("login-window").style.display = "none";
-    document.getElementById("forgotten-password-window").style.display = "none";
-    document.getElementById("new-password-window").style.display = "none";
-    document.getElementById("signup-form").reset();
-    document.getElementById("login-form").reset();
-    document.getElementById("forgotten-password-form").reset();
-    document.getElementById("new-password-form").reset();
+    if (document.getElementById("signup") != null) {
+      document.getElementById("signup").style.display = "none";
+      document.getElementById("signup-form").reset();
+    }
+    if (document.getElementById("login-window") != null) {
+      document.getElementById("login-window").style.display = "none";
+      document.getElementById("login-form").reset();
+    }
+    if (document.getElementById("forgotten-password-window") != null) {
+      document.getElementById("forgotten-password-window").style.display = "none";
+      document.getElementById("forgotten-password-form").reset();
+    }
+    if (document.getElementById("new-password-window") != null) {
+      document.getElementById("new-password-window").style.display = "none";
+      document.getElementById("new-password-form").reset();
+    }
+
     var elements = document.querySelectorAll("form input");
 
     for (var i = 0; i < 4; i++) {

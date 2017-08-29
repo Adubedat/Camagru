@@ -5,15 +5,18 @@
 <div id="montage-container">
   <div id="montage" class="border-block">
     <video id="video"></video>
-    <button id="upload-img">Upload image</button>
+    <input id="upload-input" type='file' accept="image/*" style="display:none;"/>
+    <button id="upload-img">Upload image (JPG, JPEG, GIF or PNG)</button>
     <div id="buttons-div">
       <button id="take-snap">Take picture</button>
       <button id="enable-camera">Enable camera</button>
       <button id="disable-camera">Disable camera</button>
+
     </div>
     <canvas id="canvas"></canvas>
   </div>
   <div id="user-gallery" class="border-block">
     <p class="subtitle" id="my-gallery-title">My gallery</p>
+    <img id="photo"></img>
   </div>
 </div>
