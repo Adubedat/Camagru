@@ -1,9 +1,13 @@
 window.addEventListener("load", function(){
-  document.getElementById("forgotten-password-validation").addEventListener("click", send_new_password_mail);
+  if (document.getElementById("forgotten-password-validation") != null) {
+    document.getElementById("forgotten-password-validation").addEventListener("click", send_new_password_mail);
+  }
 
-  document.getElementById("new-password-validation").addEventListener("click", change_password);
+  if (document.getElementById("new-password-validation") != null) {
+    document.getElementById("new-password-validation").addEventListener("click", change_password);
+    document.getElementById("new-password").addEventListener("keyup", check_new_password);
+  }
 
-  document.getElementById("new-password").addEventListener("keyup", check_new_password);
   function send_new_password_mail() {
     delete_temporary_messages();
     document.getElementById("forgotten-password-validation").setAttribute('disabled', 'disabled');

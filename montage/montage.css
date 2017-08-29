@@ -1,0 +1,65 @@
+#canvas {
+  display: none;
+}
+
+#montage-container {
+  display: flex;
+  justify-content: center;
+}
+#my-gallery-title {
+   font-size: 30px;
+}
+
+#video {
+  display: none;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+#enable-camera {
+  display: none;
+}
+
+#disable-camera {
+  display: none;
+}
+
+#montage {
+  margin-right: 10px;
+  width: 700px;
+  height: 580px;
+}
+
+#montage button {
+  padding: 10px;
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  border: 1px solid grey;
+  background-color: #f1f1f1;
+}
+#user-gallery {
+  margin-left: 10px;
+  width: 350px;
+  height: 580px;
+}
+
+#upload-img {
+  width:640px;
+  height:480px;
+  display: none;
+  margin: 0 auto;
+  border: 1px dotted grey !important;
+}
+.subtitle {
+  font-family: 'Arizonia', cursive;
+  text-align: center;
+  font-size: 70px;
+}
+
+.border-block {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 1px rgba(0,0,0,.3);
+}

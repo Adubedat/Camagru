@@ -48,6 +48,9 @@ include('config/setup.php');
           <?php
         }
       }
+      if (isset($_SESSION['logged_on_user']) && $_SESSION['logged_on_user'] == "yes") {
+        include('montage/montage.html');
+      }
     ?>
   </body>
 </html>
