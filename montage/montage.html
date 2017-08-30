@@ -4,19 +4,27 @@
 <p class="subtitle">Montage</p>
 <div id="montage-container">
   <div id="montage" class="border-block">
-    <video id="video"></video>
-    <input id="upload-input" type='file' accept="image/*" style="display:none;"/>
-    <button id="upload-img">Upload image (JPG, JPEG, GIF or PNG)</button>
+    <div id="drag-zone">
+      <video id="video"></video>
+      <input id="upload-input" type='file' accept="image/*" style="display:none;"/>
+      <button id="upload-img">Upload image (JPG, JPEG, GIF or PNG)</button>
+    </div>
     <div id="buttons-div">
       <button id="take-snap">Take picture</button>
       <button id="enable-camera">Enable camera</button>
       <button id="disable-camera">Disable camera</button>
 
     </div>
-    <canvas id="canvas"></canvas>
+    <canvas id="canvas" width="640" height="480"></canvas>
   </div>
   <div id="user-gallery" class="border-block">
+    <img id="photo">
     <p class="subtitle" id="my-gallery-title">My gallery</p>
-    <img id="photo"></img>
   </div>
+</div>
+<div id="draggable-images-container" class="border-block">
+  <img id="join" class="list-images" src="img/join.png" />
+  <img id="sunglasses" class="list-images" src="img/sunglasses.png" />
+  <img id="chain" class="list-images" src="img/chain.png" />
+  <img id="thug-life" class="list-images" src="img/thug-life.png" />
 </div>
