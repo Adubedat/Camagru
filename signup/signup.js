@@ -1,34 +1,37 @@
 window.addEventListener("load", function(){
-  document.getElementById("signup-button").onclick = function() {
-    document.getElementById("signup").style.display = 'flex';
-  };
-  var close_list = document.getElementsByClassName("close");
-  addEventListenerList(close_list, 'click', close_form);
+  if (document.getElementById('signup-button') != null) {
+    document.getElementById("signup-button").onclick = function() {
+      document.getElementById("signup").style.display = 'flex';
+    };
+    var close_list = document.getElementsByClassName("close");
+    addEventListenerList(close_list, 'click', close_form);
 
-  var modal = document.getElementById('signup');
-  var modal2 = document.getElementById('login-window');
-  var modal3 = document.getElementById('forgotten-password-window');
-  window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    var modal = document.getElementById('signup');
+    var modal2 = document.getElementById('login-window');
+    var modal3 = document.getElementById('forgotten-password-window');
+    window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+          delete_temporary_messages();
+      }
+      else if (event.target == modal2) {
+        modal2.style.display= "none";
         delete_temporary_messages();
+      }
+      else if (event.target == modal3) {
+        modal3.style.display= "none";
+        delete_temporary_messages();
+      }
     }
-    else if (event.target == modal2) {
-      modal2.style.display= "none";
-      delete_temporary_messages();
-    }
-    else if (event.target == modal3) {
-      modal3.style.display= "none";
-      delete_temporary_messages();
-    }
+
+    document.getElementById("email").addEventListener("keyup", check_mail);
+    document.getElementById("login").addEventListener("keyup", check_login);
+    document.getElementById("password").addEventListener("keyup", check_password);
+    document.getElementById("password-confirmation").addEventListener("keyup", check_password_confirmation);
+
+    document.getElementById("signup-validation").addEventListener("click", registration);
+
   }
-
-  document.getElementById("email").addEventListener("keyup", check_mail);
-  document.getElementById("login").addEventListener("keyup", check_login);
-  document.getElementById("password").addEventListener("keyup", check_password);
-  document.getElementById("password-confirmation").addEventListener("keyup", check_password_confirmation);
-
-  document.getElementById("signup-validation").addEventListener("click", registration);
 
   function registration() {
       delete_temporary_messages();

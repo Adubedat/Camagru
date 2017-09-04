@@ -18,6 +18,13 @@ try {
         activation_id TEXT,
         reset_id TEXT,
         is_activated BOOLEAN
+      );
+
+      CREATE TABLE pictures(
+        picture_location VARCHAR(50),
+        creation_date DATETIME,
+        author VARCHAR(16),
+        comment TEXT
       );';
 
       $db->exec($sql);

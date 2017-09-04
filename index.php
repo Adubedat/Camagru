@@ -19,11 +19,11 @@ include('config/setup.php');
     <?php
 
       include('header/header.php');
-      include('signup/signup.php');
-      if (!isset($_SESSION['logged_on_user']) || $_SESSION['logged_on_user'] != "yes") {
+      if (!isset($_SESSION['logged_on_user']) || $_SESSION['logged_on_user'] == "") {
+        include('signup/signup.php');
         include('login/login.php');
         include('login/forgotten-password.html');
-        if (isset($_SESSION['password_changed']) && $_SESSION['password_changed'] == "yes") {
+        if (isset($_SESSION['password_changed']) && $_SESSION['password_changed'] != "") {
           unset($_SESSION['password_changed']);
           ?>
             <script type="text/javascript">
@@ -48,9 +48,13 @@ include('config/setup.php');
           <?php
         }
       }
-      if (isset($_SESSION['logged_on_user']) && $_SESSION['logged_on_user'] == "yes") {
+      if (isset($_SESSION['logged_on_user']) && $_SESSION['logged_on_user'] != "") {
         include('montage/montage.html');
       }
+      else {
+        echo '<p style="font-family:Arial;text-align:center;">You must be connected to see the montage section.</p>';
+      }
+      include ('gallery/gallery.html');
     ?>
   </body>
 </html>

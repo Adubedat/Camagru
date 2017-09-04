@@ -1,4 +1,6 @@
 window.addEventListener("load", function(){
+  load_author_pictures();
+
   var streaming = false;
   var video = document.getElementById('video');
   var canvas = document.getElementById('canvas');
@@ -75,8 +77,7 @@ window.addEventListener("load", function(){
   }
 
   function image_callback(response) {
-    console.log(response);
-    photo.setAttribute('src', response.response);
+    create_picture_elem(response.response);
   }
 
   function get_images_data(img_url) {
@@ -242,10 +243,65 @@ window.addEventListener("load", function(){
       image.style.left = newX + 'px';
     }
   }
+
   function remove_draggable_images() {
     var images_list = document.getElementsByClassName('draggable-images');
     for (var i = 0; i < images_list.length; i++) {
       images_list[i].remove();
     }
+  }
+
+  function load_author_pictures() {
+    var post_data = "author=yes";
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4) {
+        if (this.status == 200) {
+          author_pictures_callback(this);
+        }
+      }
+    };
+    xhttp.open("POST", "montage/montage_db.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(post_data);
+  }
+
+  function author_pictures_callback(response) {
+    var pictures_location = JSON.parse(response.response);
+    for (var i = 0; i < pictures_location.length; i++) {
+      create_picture_elem("../img/" + pictures_location[i]);
+    }
+  }
+
+  function create_picture_elem(src) {
+    var newDiv = document.createElement('div');
+    newDiv.setAttribute('class', 'user_picture_div');
+    var newImg = document.createElement('img');
+    newImg.src = src;
+    var delete_button = document.createElement('img');
+    delete_button.src = "../img/red-cross.png";
+    delete_button.setAttribute('class', 'delete_button');
+    delete_button.setAttribute('value', src);
+    delete_button.addEventListener('click', delete_picture);
+    newImg.setAttribute('class', 'user_picture');
+    newDiv.appendChild(newImg);
+    newDiv.appendChild(delete_button);
+    var container = document.getElementById('user_pictures');
+    container.insertBefore(newDiv, container.firstChild);
+  }
+
+  function delete_picture(e) {
+    var post_data = "delete_image=" + e.target.getAttribute('value');
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4) {
+        if (this.status == 200) {
+          e.target.parentElement.remove();
+        }
+      }
+    };
+    xhttp.open("POST", "montage/montage_db.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(post_data);
   }
 });

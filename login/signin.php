@@ -18,7 +18,7 @@ else if (!is_account_activated($_POST['login'], $_POST['password'])) {
   die;
 }
 else {
-  $_SESSION['logged_on_user'] = 'yes';
+  $_SESSION['logged_on_user'] = $_POST['login'];
 }
 
 function good_password($login, $password) {

@@ -1,5 +1,8 @@
 <?php
 
+session_start();
+
+include ('montage_db.php');
 $data = file_get_contents('php://input');
 $images = json_decode($data);
 $dest_img = $images[0]->src;
@@ -10,7 +13,6 @@ echo $final_image;
 function create_montage($images, $dest_img) {
   $i = 1;
   while($images[$i] != null) {
-//    $img_resized = resize_img($images[$i]);
     $dest_img = collapse_images($dest_img, $images[$i]);
     $i += 1;
   }
@@ -18,8 +20,13 @@ function create_montage($images, $dest_img) {
   imagepng($dest_img);
   $contents = ob_get_contents();
   ob_end_clean();
+  date_default_timezone_set('Europe/Paris');
+  $today = date('Y-m-d H:i:s');
+  $img_location = $_SESSION['logged_on_user'] . $today;
+  imagepng($dest_img, '../img/' . $img_location);
+  img_to_db($img_location, $today);
   $dest_img = "data:image/png;base64," . base64_encode($contents);
-  return ($dest_img);
+  return ('../img/' . $img_location);
 }
 
 function collapse_images($dest, $img) {
@@ -34,20 +41,6 @@ function collapse_images($dest, $img) {
   imagecopyresampled($dest, $src, $destX, $destY, 0, 0, $img->width, $img->height, $srcWidth, $srcHeight);
 
   return ($dest);
-}
-function resize_img($img) {
-
-  $array = split('/', $img->src);
-  $source = imagecreatefrompng('../img/' . end($array));
-  $destination = imagecreate($img->width, $img->height);
-
-  $largeur_source = imagesx($source);
-  $hauteur_source = imagesy($source);
-  $largeur_destination = $img->width;
-  $hauteur_destination = $img->height;
-
-  imagecopyresampled($destination, $source, 0, 0, 0, 0, $largeur_destination, $hauteur_destination, $largeur_source, $hauteur_source);
-  return ($destination);
 }
 
 function img_to_resource($img) {

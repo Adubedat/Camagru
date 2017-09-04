@@ -8,6 +8,8 @@
 }
 #my-gallery-title {
    font-size: 30px;
+   margin-top: 10px;
+   margin-bottom: 0px;
 }
 
 #video {
@@ -49,7 +51,37 @@
 #user-gallery {
   margin-left: 10px;
   width: 350px;
-  height: 580px;
+  height: 780px;
+}
+
+#user_pictures {
+  overflow: auto;
+  max-height: 720px;
+}
+
+.user_picture_div {
+  margin: 20px;
+  border-radius: 5px;
+  background-color: rgba(40, 109, 168, 0.3);
+  box-shadow: 0 0 5px 1px rgba(0,0,0,.3);
+  position: relative;
+}
+.user_picture {
+  width: 240px;
+  display:block;
+  padding:20px;
+  margin: 0 auto;
+}
+
+.delete_button {
+  width:20px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.delete_button:hover {
+  cursor: pointer;
 }
 
 #drag-zone {
@@ -76,19 +108,14 @@
 .list-images {
   cursor: pointer;
   margin: 10px;
-  width: 200px;
-  height: 200px;
-}
-.subtitle {
-  font-family: 'Arizonia', cursive;
-  text-align: center;
-  font-size: 70px;
+  width: 160px;
+  height: 160px;
 }
 
 .border-block {
   margin: 0 auto;
   margin-top: 20px;
-  width: 1070px;
+  width: 700px;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 0 5px 1px rgba(0,0,0,.3);
