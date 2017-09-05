@@ -1,3 +1,34 @@
+@media (max-width: 1085px) {
+  #montage {
+    height: 68vw;
+    margin: auto !important;
+    min-width: 244px;
+    min-height: 215px;
+  }
+  #drag-zone {
+    margin-bottom: 10px !important;
+  }
+  #montage button {
+    padding: 5px !important;
+    margin-bottom: 0px !important;
+    margin-top: 0px !important;
+  }
+  #user-gallery {
+    margin: auto !important;
+    margin-top: 200px !important;
+    width: 80% !important;
+    max-width: 700px !important;
+    height: 260px !important;
+  }
+  #user_pictures {
+    height: 220px !important;
+    display: flex;
+  }
+  .user_picture {
+    width: 160px !important;
+  }
+}
+
 #canvas {
   display: none;
 }
@@ -5,6 +36,7 @@
 #montage-container {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 #my-gallery-title {
    font-size: 30px;
@@ -15,8 +47,9 @@
 #video {
   dispay:none;
   margin: 0 auto;
-  width: 640px;
-  height: 480px;
+  width:100%;
+  max-width: 640px;
+  max-height: 480px;
 }
 
 #uploaded_img {
@@ -35,8 +68,9 @@
 
 #montage {
   margin-right: 10px;
-  width: 700px;
-  height: 580px;
+  width: 80%;
+  max-width: 700px;
+  max-height: 580px;
 }
 
 #montage button {
@@ -86,8 +120,8 @@
 
 #drag-zone {
   margin: 20px;
-  width: 640px;
-  height: 480px;
+  max-width: 640px;
+  max-height: 480px;
 }
 #upload-img {
   width:640px;
@@ -97,25 +131,34 @@
   margin-bottom: 10px;
   border: 1px dotted grey !important;
 }
-#draggable-images-container {
+/*#draggable-images-container {
   display: flex;
   justify-content: space-between;
-}
+  max-width: 700px;
+  margin: 0 auto;
+}*/
 .draggable-images {
   position: absolute;
   z-index: 2;
 }
 .list-images {
   cursor: pointer;
+  display: block;
   margin: 10px;
-  width: 160px;
-  height: 160px;
+  max-width: 100%;
 }
-
+.cell {
+    width: 20%;
+  }
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .border-block {
   margin: 0 auto;
   margin-top: 20px;
-  width: 700px;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 0 5px 1px rgba(0,0,0,.3);

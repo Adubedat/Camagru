@@ -57,8 +57,8 @@ window.addEventListener("load", function(){
       canvas.getContext('2d').drawImage(uploaded_img, 0, 0, uploaded_img.naturalWidth, uploaded_img.naturalHeight, 0, 0, 640, 480);
     }
     else {
-      canvas.width = 640;
-      canvas.height = 480;
+      canvas.width = video.clientWidth;
+      canvas.height = video.clientHeight;
       canvas.getContext('2d').drawImage(video, 0, 0);
     }
     var img_url = canvas.toDataURL('image/png');
@@ -234,10 +234,10 @@ window.addEventListener("load", function(){
 
     if (newX >= dragzone_position.left && newY >= dragzone_position.top && newRight <= dragzone_position.right && newBottom <= dragzone_position.bottom) {
       image.style.left = newX + 'px';
-      image.style.top = newY + 'px';
+      image.style.top = newY + window.scrollY + 'px';
     }
     else if ((newX <= dragzone_position.left || newRight >= dragzone_position.right) && newY >= dragzone_position.top && newBottom <= dragzone_position.bottom) {
-      image.style.top = newY + 'px';
+      image.style.top = newY + window.scrollY + 'px';
     }
     else if ((newY <= dragzone_position.top || newBottom >= dragzone_position.bottom) && newX >= dragzone_position.left && newRight <= dragzone_position.right) {
       image.style.left = newX + 'px';

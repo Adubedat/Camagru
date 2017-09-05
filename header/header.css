@@ -1,3 +1,17 @@
+@media (max-width: 640px) {
+  li:first-child {
+    width: 100%;
+    display: inline-block;
+    margin: auto;
+  }
+  li:first-child a{
+    text-align: center;
+  }
+  li{
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
 body {
   margin: 0;
   background-color: #f2f2f2;

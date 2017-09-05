@@ -7,7 +7,6 @@ window.addEventListener("load", function(){
     document.getElementById("new-password-validation").addEventListener("click", change_password);
     document.getElementById("new-password").addEventListener("keyup", check_new_password);
   }
-
   function send_new_password_mail() {
     delete_temporary_messages();
     document.getElementById("forgotten-password-validation").setAttribute('disabled', 'disabled');
@@ -72,7 +71,7 @@ window.addEventListener("load", function(){
       document.getElementById("new-password-validation").removeAttribute('disabled');
     }
     else {
-      location.replace("http://localhost:8080");
+      location.replace("http://" + window.location.host);
     }
   }
 });
