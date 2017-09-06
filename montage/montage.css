@@ -1,6 +1,5 @@
 @media (max-width: 1085px) {
   #montage {
-    height: 68vw;
     margin: auto !important;
     min-width: 244px;
     min-height: 215px;
@@ -10,18 +9,18 @@
   }
   #montage button {
     padding: 5px !important;
-    margin-bottom: 0px !important;
     margin-top: 0px !important;
   }
   #user-gallery {
-    margin: auto !important;
-    margin-top: 200px !important;
+    margin-top: 20px !important;
+    margin-left: 0px !important;
     width: 80% !important;
-    max-width: 700px !important;
-    height: 260px !important;
+    max-width: 680px !important;
+    min-width: 244px;
   }
   #user_pictures {
-    height: 220px !important;
+    padding-left: 20px;
+    padding-right: 20px;
     display: flex;
   }
   .user_picture {
@@ -55,8 +54,9 @@
 #uploaded_img {
   display: block;
   margin: 0 auto;
-  width: 640px;
-  height: 480px;
+  width:100%;
+  max-width: 640px;
+  max-height: 480px;
 }
 #enable-camera {
   display: none;
@@ -67,12 +67,15 @@
 }
 
 #montage {
-  margin-right: 10px;
   width: 80%;
-  max-width: 700px;
-  max-height: 580px;
+  max-width: 680px;
 }
 
+#camera-zone {
+  max-width: 640px;
+  padding: 20px;
+  padding-bottom: 0px;
+}
 #montage button {
   padding: 10px;
   margin: 10px;
@@ -85,7 +88,7 @@
 #user-gallery {
   margin-left: 10px;
   width: 350px;
-  height: 780px;
+  max-height: 780px;
 }
 
 #user_pictures {
@@ -119,24 +122,25 @@
 }
 
 #drag-zone {
-  margin: 20px;
   max-width: 640px;
   max-height: 480px;
 }
 #upload-img {
-  width:640px;
-  height:480px;
+  width: 100%;
+  height: 50vw;
+  max-width: 640px;
+  max-height:480px;
   display: none;
   margin: 0 auto;
   margin-bottom: 10px;
   border: 1px dotted grey !important;
 }
-/*#draggable-images-container {
-  display: flex;
-  justify-content: space-between;
-  max-width: 700px;
-  margin: 0 auto;
-}*/
+#draggable-images-container {
+  max-width: 640px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 20px;
+}
 .draggable-images {
   position: absolute;
   z-index: 2;
@@ -157,8 +161,6 @@
   justify-content: space-between;
 }
 .border-block {
-  margin: 0 auto;
-  margin-top: 20px;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 0 5px 1px rgba(0,0,0,.3);

@@ -54,15 +54,17 @@ window.addEventListener("load", function(){
   function takepicture() {
     if (document.getElementById('uploaded_img') != null) {
       var uploaded_img = document.getElementById('uploaded_img');
+      var Xratio = 640 / uploaded_img.clientWidth;
+      var Yratio = 480 / uploaded_img.clientHeight;
       canvas.getContext('2d').drawImage(uploaded_img, 0, 0, uploaded_img.naturalWidth, uploaded_img.naturalHeight, 0, 0, 640, 480);
     }
     else {
-      canvas.width = video.clientWidth;
-      canvas.height = video.clientHeight;
+      var Xratio = 640 / video.clientWidth;
+      var Yratio = 480 / video.clientHeight;
       canvas.getContext('2d').drawImage(video, 0, 0);
     }
     var img_url = canvas.toDataURL('image/png');
-    var post_data = JSON.stringify(get_images_data(img_url));
+    var post_data = JSON.stringify(get_images_data(img_url, Xratio, Yratio));
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4) {
@@ -80,18 +82,19 @@ window.addEventListener("load", function(){
     create_picture_elem(response.response);
   }
 
-  function get_images_data(img_url) {
+  function get_images_data(img_url, Xratio, Yratio) {
     var images = document.getElementsByClassName('draggable-images');
     var dragzone_position = document.getElementById('drag-zone').getBoundingClientRect();
     var array = [];
     array[0] = { src: img_url};
+    var xratio = 640 / document.getElementById('uploaded_img')
     for (var i = 0; i < images.length; i++) {
       var img_position = images[i].getBoundingClientRect();
       array[i + 1] = { src: images[i].src,
-                       distx: img_position.left - dragzone_position.left,
-                       disty: img_position.top - dragzone_position.top,
-                       width: images[i].clientWidth,
-                       height: images[i].clientHeight};
+                       distx: (img_position.left - dragzone_position.left) * Xratio,
+                       disty: (img_position.top - dragzone_position.top) * Yratio,
+                       width: images[i].clientWidth * Xratio,
+                       height: images[i].clientHeight * Yratio};
     }
     return (array);
   }
@@ -107,6 +110,7 @@ window.addEventListener("load", function(){
   function stop_camera() {
     while (document.getElementsByClassName('draggable-images')[0] != null) {
       remove_draggable_images();
+      document.getElementById('take-snap').setAttribute('disabled', 'disabled');
     }
     var video = document.getElementById('video');
     video.pause();
@@ -153,7 +157,8 @@ window.addEventListener("load", function(){
       }
       node.insertBefore(img_element, node.firstChild);
       document.getElementById('upload-img').style.display = 'none';
-
+      var width = img_element.clientWidth;
+      img_element.style.height = width / (4/3);
     });
 
     reader.readAsDataURL(file);
@@ -175,6 +180,7 @@ window.addEventListener("load", function(){
       new_img.setAttribute('id', id + ' drag');
       new_img.addEventListener('mousedown', initial_click);
       node.insertBefore(new_img, node.firstChild);
+      document.getElementById('take-snap').removeAttribute('disabled');
     }
     else {
       alert('You have to enable your webcam or upload a picture to do that.');
@@ -205,6 +211,9 @@ window.addEventListener("load", function(){
   function modifImage(e) {
     if (e.keyCode == 46) {
       image.remove();
+      if (document.getElementsByClassName('draggable-images')[0] == null) {
+        document.getElementById('take-snap').setAttribute('disabled', 'disabled');
+      }
     }
     else if (e.keyCode == 109) {
       image.style.width = image.clientWidth - 10;

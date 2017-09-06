@@ -3,19 +3,20 @@
 
 <p class="subtitle">Montage</p>
 <div id="montage-container">
-  <div id="montage" class="border-block">
-    <div id="drag-zone">
-      <video id="video"></video>
-      <input id="upload-input" type='file' accept="image/*" style="display:none;"/>
-      <button id="upload-img">Upload image (JPG, JPEG, GIF or PNG)</button>
+  <div id="montage">
+    <div id="camera-zone" class="border-block">
+      <div id="drag-zone">
+        <canvas id="canvas" width="640px" height="480px"></canvas>
+        <video id="video"></video>
+        <input id="upload-input" type='file' accept="image/*" style="display:none;"/>
+        <button id="upload-img">Upload image (JPG, JPEG, GIF or PNG)</button>
+      </div>
+      <div id="buttons-div">
+        <button id="take-snap" disabled="disabled">Take picture</button>
+        <button id="enable-camera">Enable camera</button>
+        <button id="disable-camera">Disable camera</button>
+      </div>
     </div>
-    <div id="buttons-div">
-      <button id="take-snap">Take picture</button>
-      <button id="enable-camera">Enable camera</button>
-      <button id="disable-camera">Disable camera</button>
-
-    </div>
-    <canvas id="canvas" width="640" height="480"></canvas>
     <div id="draggable-images-container" class="border-block">
       <div class="grid">
         <div class="cell">
