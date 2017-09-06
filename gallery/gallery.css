@@ -3,3 +3,43 @@
   text-align: center;
   font-size: 70px;
 }
+
+#gallery-container{
+  margin: auto;
+  max-width: 1500px;
+  padding: 20px;
+}
+
+#gallery-grid {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.gallery-cell {
+  width: 25%;
+  padding: 20px;
+  padding-top: 0px;
+  margin: auto;
+  margin-bottom: 20px;
+  min-width: 204px;
+}
+
+.gallery-img {
+  display: block;
+  max-width: 100%;
+}
+
+.author, .date {
+  display: inline-block;
+  font-family: 'Arial';
+}
+.date {
+  float: right;
+}
+.border-block {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 1px rgba(0,0,0,.3);
+}

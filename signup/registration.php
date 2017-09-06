@@ -6,11 +6,11 @@
     echo "<p class='error_msg'>Your email is not valid. (me@exemple.com expected)</p>";
     die;
   }
-  else if (!preg_match("/^([a-zA-Z0-9 _-]+)$/", $_POST['login'])) {
-    echo "<p class='error_msg'>Your login is not valid. (Only lowercase, uppercase, digits, spaces and -_)</p>";
+  else if (!preg_match("/^([a-zA-Z0-9 _-]+)$/", $_POST['login']) || strlen($_POST['login']) > 16) {
+    echo "<p class='error_msg'>Your login is not valid. (16 characters max. Only lowercase, uppercase, digits, spaces and -_)</p>";
     die;
   }
-  else if (!preg_match("/^(?=.*\d)(?=.*[a-z])[0-9a-zA-Z]{8,}$/", $_POST['password'])) {
+  else if (!preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!$%@#£€*?&]{8,}$/", $_POST['password'])) {
     echo "<p class='error_msg'>Your password is not valid. (You need at least 8 characters with one lowercase and one digit)</p>";
     die;
   }

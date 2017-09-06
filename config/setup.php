@@ -21,11 +21,21 @@ try {
       );
 
       CREATE TABLE pictures(
-        picture_location VARCHAR(50),
+        picture_location VARCHAR(40),
         creation_date DATETIME,
-        author VARCHAR(16),
+        author VARCHAR(16)
+      );
+
+      CREATE TABLE likes(
+        picture_name VARCHAR(40),
+        author_login VARCHAR(16)
+      );
+
+      CREATE TABLE comments(
+        picture_name VARCHAR(40),
+        author_login VARCHAR(16),
         comment TEXT
-      );';
+      )';
 
       $db->exec($sql);
 }catch(PDOException $e){

@@ -120,7 +120,7 @@ window.addEventListener("load", function(){
   }
 
   function check_password() {
-    var reg = /^(?=.*\d)(?=.*[a-z])[0-9a-zA-Z]{8,}$/;
+    var reg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!$%@#£€*?&]{8,}$/;
     var password = document.getElementById("password");
 
     if (reg.test(password.value)) {
