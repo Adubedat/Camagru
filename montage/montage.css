@@ -38,6 +38,7 @@
   flex-wrap: wrap;
 }
 #my-gallery-title {
+  padding-top: 0px !important;
    font-size: 30px;
    margin-top: 10px;
    margin-bottom: 0px;
