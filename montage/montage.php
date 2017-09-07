@@ -26,6 +26,7 @@ function create_montage($images, $dest_img) {
   imagepng($dest_img, '../img/' . $img_location);
   img_to_db($img_location, $today);
   $dest_img = "data:image/png;base64," . base64_encode($contents);
+  sleep(1);
   return ('../img/' . $img_location);
 }
 
