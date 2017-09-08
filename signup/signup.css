@@ -1,8 +1,7 @@
 .form-container {
   top:0px;
   left:0px;
-  opacity: 0.8;
-  background-color: #1C1C1C;
+  background-color: rgba(28, 28, 28, 0.8);
   position: fixed;
   display: none;
   justify-content: center;

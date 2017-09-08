@@ -43,10 +43,11 @@ function create_gallery_elem(picture) {
 }
 
 function create_likes_elem(likes, div, picture_name) {
+  var subdiv = document.createElement('div');
   var likes_count = document.createElement('p');
   likes_count.setAttribute('class', 'left');
   likes_count.appendChild(document.createTextNode(likes.length + ' likes'));
-  div.appendChild(likes_count);
+  subdiv.appendChild(likes_count);
   if (user != null && user != '') {
     var likes_button = document.createElement('button');
     likes_button.appendChild(document.createTextNode('like'));
@@ -58,14 +59,15 @@ function create_likes_elem(likes, div, picture_name) {
     }
     likes.forEach(function(elem, i) {
       if (Object.values(elem).indexOf(user) > -1) {
-        likes_button.style.backgroundColor = '#286da8';
+        likes_button.style.backgroundColor = '#BED3E5';
       }
       else {
         likes_button.style.backgroundColor = 'white';
       }
     });
-    div.appendChild(likes_button);
+    subdiv.appendChild(likes_button);
   }
+  div.appendChild(subdiv);
 }
 
 function get_user() {
@@ -130,6 +132,49 @@ function load_likes(picture_name, div) {
   xhttp.send(post_data);
 }
 
+function create_comments_elem(comments, div, picture_name) {
+  var subdiv = document.createElement('div');
+  if (user != null && user != '') {
+    var com_input = document.createElement('input');
+    com_input.setAttribute('type', 'text');
+    com_input.setAttribute('class', 'left comment-input');
+    com_input.setAttribute('maxlength', '1024');
+    com_input.setAttribute('placeholder', 'Write a comment ...');
+    subdiv.appendChild(com_input);
+    var com_button = document.createElement('button');
+    com_button.setAttribute('class', 'right comment-button');
+    com_button.value = picture_name;
+    com_button.addEventListener('click', comment_event);
+    com_button.appendChild(document.createTextNode('Send'));
+    com_button.addEventListener('click', comment_event);
+    subdiv.appendChild(com_button);
+    div.appendChild(subdiv);
+  }
+}
+
+function comment_event(e) {
+  var picture_name = e.target.value;
+  var comment = e.target.previousSibling.value;
+  var post_data = "comment_event=yes&picture_name=" + picture_name +"&comment=" + comment;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4) {
+      if (this.status == 200) {
+        if (this.response != "") {
+          var com = document.createElement('p');
+          com . setAttribute('class', 'comment');
+          com.style.backgroundColor = '#BED3E5';
+          com.appendChild(document.createTextNode(user + " : " + this.response));
+          e.target.parentElement.insertBefore(com, e.target.parentElement.firstChild);
+        }
+      }
+    }
+  }
+  xhttp.open("POST", "gallery/gallery.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(post_data);
+}
+
 function load_comments(picture_name, div) {
   var post_data = "comments=yes&picture_name=" + picture_name;
   var xhttp = new XMLHttpRequest();
@@ -137,6 +182,8 @@ function load_comments(picture_name, div) {
     if (this.readyState == 4) {
       if (this.status == 200) {
           var comments = JSON.parse(this.response);
+          create_comments_elem(comments, div, picture_name);
+          console.log(comments);
       }
     }
   }

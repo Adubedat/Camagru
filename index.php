@@ -52,7 +52,7 @@ include('config/setup.php');
         include('montage/montage.html');
       }
       else {
-        echo '<p style="font-family:Arial;text-align:center;">You must be connected to see the montage section.</p>';
+        echo '<p style="font-family:Arial;text-align:center;padding-top:150px;">You must be connected to see the montage section.</p>';
       }
       include ('gallery/gallery.html');
     ?>
