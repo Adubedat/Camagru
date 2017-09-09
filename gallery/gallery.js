@@ -3,6 +3,47 @@ load_gallery();
 var user;
 get_user();
 
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById('load-more').addEventListener('click', load_more_gallery);
+  document.getElementById('refresh-gallery').addEventListener('click', refresh_gallery);
+});
+
+function refresh_gallery() {
+  while (document.getElementsByClassName('gallery-cell')[0] != null) {
+    var grids = document.getElementsByClassName('gallery-cell');
+    for (var i = 0; i < grids.length; i++) {
+      grids[i].remove();
+    }
+  }
+  load_gallery();
+}
+
+function load_more_gallery() {
+  var elem = document.getElementsByClassName('like-button');
+  var last_elem = elem[elem.length - 1];
+  var picture_name = last_elem.value;
+  load_more(picture_name);
+}
+
+function load_more(picture_name) {
+  var post_data = "load_more=yes&picture_name=" + picture_name;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4) {
+      if (this.status == 200) {
+        console.log(this);
+        var pictures = JSON.parse(this.response);
+        for (var i = 0; i < pictures.length; i++) {
+          create_gallery_elem(pictures[i]);
+        }
+      }
+    }
+  };
+  xhttp.open("POST", "gallery/gallery.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(post_data);
+}
+
 function load_gallery() {
   var post_data = "gallery=yes";
   var xhttp = new XMLHttpRequest();

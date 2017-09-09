@@ -25,6 +25,56 @@ if (isset($_POST['user']) && $_POST['user'] == "yes") {
   echo $_SESSION['logged_on_user'];
 }
 
+if (isset($_POST['load_more']) && isset($_POST['picture_name']) && $_POST['load_more'] == "yes") {
+  echo json_encode(search_last_picture_position($_POST['picture_name']));
+}
+
+function search_last_picture_position($picture_name) {
+  include ('../config/database.php');
+
+  try {
+      $db = new pdo($DB_DSN, $DB_USER, $DB_PASSWORD, array(
+          PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+      ));
+
+      $sql = "SELECT `picture_location`
+              FROM `camagru`.`pictures`
+              ORDER BY `creation_date` DESC;";
+      $query = $db->prepare($sql);
+      $query->execute();
+      $result = $query->fetchAll(PDO::FETCH_COLUMN);
+      foreach($result as $key => $elem) {
+        if ($elem == $picture_name) {
+          return (search_next_pictures($key + 1));
+        }
+      }
+    }catch(PDOException $e){
+      echo 'ERROR PDO :' . $e->getMessage();
+    }
+}
+
+function search_next_pictures($key) {
+  include ('../config/database.php');
+
+  try {
+      $db = new pdo($DB_DSN, $DB_USER, $DB_PASSWORD, array(
+          PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+      ));
+
+      $sql = "SELECT *
+              FROM `camagru`.`pictures`
+              ORDER BY `creation_date` DESC
+              LIMIT 5 OFFSET :key;";
+      $query = $db->prepare($sql);
+      $query->bindParam(':key', $key, PDO::PARAM_INT);
+      $query->execute();
+      $result = $query->fetchAll();
+    }catch(PDOException $e){
+      echo 'ERROR PDO :' . $e->getMessage();
+    }
+    return ($result);
+}
+
 function like_event($picture_name) {
   if (!$_SESSION['logged_on_user'] ||  $_SESSION['logged_on_user'] == "") {
     die;
