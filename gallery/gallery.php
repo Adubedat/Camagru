@@ -29,6 +29,35 @@ if (isset($_POST['load_more']) && isset($_POST['picture_name']) && $_POST['load_
   echo json_encode(search_last_picture_position($_POST['picture_name']));
 }
 
+if (isset($_POST['comment_notif']) && isset($_POST['user']) && $_POST['comment_notif'] == "yes") {
+  send_email_notification($_POST['user']);
+}
+
+function send_email_notification($user) {
+  include '../lib/functions.php';
+  include ('../config/database.php');
+
+  try {
+      $db = new pdo($DB_DSN, $DB_USER, $DB_PASSWORD, array(
+          PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+      ));
+
+      $sql = "SELECT `email`
+              FROM `camagru`.`users`
+              WHERE `login` = :login;";
+      $query = $db->prepare($sql);
+      $query->bindParam(':login', $user, PDO::PARAM_STR);
+      $query->execute();
+      $result = $query->fetchAll(PDO::FETCH_COLUMN);
+      $email = $result[0];
+    }catch(PDOException $e){
+      echo 'ERROR PDO :' . $e->getMessage();
+    }
+  $message = "A user just commented your picture.";
+
+  mail($email, "Comment notification", $message);
+}
+
 function search_last_picture_position($picture_name) {
   include ('../config/database.php');
 

@@ -31,7 +31,6 @@ function load_more(picture_name) {
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4) {
       if (this.status == 200) {
-        console.log(this);
         var pictures = JSON.parse(this.response);
         for (var i = 0; i < pictures.length; i++) {
           create_gallery_elem(pictures[i]);
@@ -218,7 +217,23 @@ function comment_event(e) {
           com.style.backgroundColor = '#BED3E5';
           com.appendChild(document.createTextNode(user + " : " + this.response));
           e.target.parentElement.insertBefore(com, e.target.parentElement.firstChild);
+          send_email_notification(e.target.parentElement.parentElement.firstChild.innerHTML);
         }
+      }
+    }
+  }
+  xhttp.open("POST", "gallery/gallery.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(post_data);
+}
+
+function send_email_notification(user) {
+  var post_data = "comment_notif=yes&user=" + user;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4) {
+      if (this.status == 200) {
+        return ;
       }
     }
   }
