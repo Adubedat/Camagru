@@ -20,9 +20,11 @@ function refresh_gallery() {
 
 function load_more_gallery() {
   var elem = document.getElementsByClassName('like-button');
-  var last_elem = elem[elem.length - 1];
-  var picture_name = last_elem.value;
-  load_more(picture_name);
+  if (elem[0] != null) {
+    var last_elem = elem[elem.length - 1];
+    var picture_name = last_elem.value;
+    load_more(picture_name);
+  }
 }
 
 function load_more(picture_name) {
