@@ -79,7 +79,8 @@ window.addEventListener("load", function(){
   }
 
   function image_callback(response) {
-    create_picture_elem(response.response);
+    if (response.response != null && response.response != "")
+      create_picture_elem(response.response);
   }
 
   function get_images_data(img_url, Xratio, Yratio) {

@@ -5,6 +5,9 @@ session_start();
 include ('montage_db.php');
 $data = file_get_contents('php://input');
 $images = json_decode($data);
+if (!isset($images[1]) || $images[1] == null) {
+  die;
+}
 $dest_img = $images[0]->src;
 $dest_img = img_to_resource($dest_img);
 $final_image = create_montage($images, $dest_img);
