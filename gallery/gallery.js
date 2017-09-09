@@ -65,7 +65,7 @@ function create_likes_elem(likes, div, picture_name) {
     }
     likes.forEach(function(elem, i) {
       if (Object.values(elem).indexOf(user) > -1) {
-        likes_button.style.backgroundColor = '#BED3E5';
+        likes_button.style.backgroundColor = '#528ab9';
       }
       else {
         likes_button.style.backgroundColor = 'white';
@@ -98,7 +98,7 @@ function like_event(e) {
     if (this.readyState == 4) {
       if (this.status == 200) {
         if (this.response == 'like added') {
-          e.target.style.backgroundColor = '#286da8';
+          e.target.style.backgroundColor = '#528ab9';
           var elem = e.target.previousSibling;
           var text = elem.innerHTML;
           var num = parseInt(text, 10);
